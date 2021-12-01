@@ -1,0 +1,62 @@
+<div class="main">
+  <ul class="rokovi" *ngIf="odabranPredmet == null">
+    <li *ngFor="let g of godine">
+      <div>{{ g.godina }} ГОДИНА</div>
+      <ul>
+        <li *ngFor="let p of g.predmeti" (click)="predmet_click(p)">
+          {{ p.naziv }}
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul class="rokovi" *ngIf="odabranPredmet != null && odabranTermin == null">
+    <li *ngFor="let r of rokovi">
+      <div>{{ r.naziv }}</div>
+      <ul>
+        <li
+          *ngFor="let t of r.termini"
+          (click)="odabranIspitniRok = r; odabranTermin = t"
+        >
+          {{ t.vrijeme }}, {{ t.mjesto }}
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+  <div
+    class="main-content"
+    *ngIf="
+      odabranPredmet != null &&
+      odabranTermin != null &&
+      !uspjesnoPrijavljenIspit
+    "
+  >
+    <div class="potvrda">
+      <section class="student">
+        <h1>Марко Марковић</h1>
+        <h2>231/18</h2>
+      </section>
+
+      <section class="naslov">
+        <p>Пријава за полагање испита из предмета</p>
+      </section>
+
+      <section class="predmet">
+        <h1>{{ odabranPredmet.naziv }}</h1>
+        <h1>{{ odabranTermin.vrijeme }}</h1>
+        <span>({{ odabranIspitniRok.naziv }})</span>
+      </section>
+
+      <button (click)="odustani_click()">ОДУСТАНИ</button>
+      <button (click)="prijaviIspit_click()">ПРИЈАВИ</button>
+    </div>
+  </div>
+
+  <div class="main-content" *ngIf="uspjesnoPrijavljenIspit">
+    <h2>Испит је успјешно пријављен!</h2>
+
+    <button>ОДЈАВИ СЕ</button>
+    <button (click)="prijaviDrugiIspit_click()">ПРИЈАВИ ДРУГИ ИСПИТ</button>
+  </div>
+</div>

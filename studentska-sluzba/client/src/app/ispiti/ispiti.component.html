@@ -1,0 +1,59 @@
+<div class="main">
+  <div class="header">
+    <h1>{{ predmet?.naziv }}</h1>
+
+    <ngx-datatable
+      [rows]="rows"
+      [headerHeight]="50"
+      [rowHeight]="50"
+      class="material expandable"
+      [groupRowsBy]="'rok'"
+      [groupExpansionDefault]="true"
+      [columnMode]="'force'"
+    >
+      <ngx-datatable-group-header [rowHeight]="50">
+        <ng-template
+          let-group="group"
+          let-expanded="expanded"
+          ngx-datatable-group-header-template
+        >
+          <div style="padding: 5px">
+            <b>{{ group.value[0].rok }}</b>
+          </div>
+        </ng-template>
+      </ngx-datatable-group-header>
+
+      <ngx-datatable-column name="vrijeme" [width]="10" [sortable]="false">
+        <ng-template ngx-datatable-header-template>
+          <span>ВРИЈЕМЕ</span>
+        </ng-template>
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          {{ value }}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="mjesto" [width]="10" [sortable]="false">
+        <ng-template ngx-datatable-header-template>
+          <span>МЈЕСТО</span>
+        </ng-template>
+        <ng-template
+          let-row="row"
+          let-value="value"
+          ngx-datatable-cell-template
+        >
+          {{ value }}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="id" [width]="50" [sortable]="false">
+        <ng-template ngx-datatable-header-template>
+          <span>ПРИЈАВЕ</span>
+        </ng-template>
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          <a [routerLink]="['/prijave']" [queryParams]="{ id: value }"
+            >пријаве</a
+          >
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
+  </div>
+</div>

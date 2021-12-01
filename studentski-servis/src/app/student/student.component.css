@@ -1,0 +1,67 @@
+.main {
+  display: flex;
+  justify-content: center;
+  padding-top: 128px;
+}
+
+.main-content {
+  width: 410px;
+  max-width: 650px;
+}
+
+form {
+  padding-left: 0.5em;
+  padding-right: 0.8em;
+}
+
+label {
+  box-sizing: border-box;
+  float: left;
+  text-align: right;
+  padding: 0.25em 1em 0 0;
+  width: 30%;
+}
+
+input,
+output,
+textarea,
+select,
+button {
+  clear: both;
+  float: right;
+  width: 70%;
+}
+
+input,
+output,
+textarea,
+select,
+button {
+  box-sizing: border-box;
+  padding: 0.2em 0.4em;
+  margin: 0.2em 0;
+  outline: 0 none;
+  border: 0 none;
+  box-shadow: none;
+}
+
+input {
+  border-bottom: dotted 1px;
+}
+
+button {
+  width: auto;
+  float: left;
+  margin: 0.5em 0.5em 0 30%;
+}
+
+re-captcha {
+  float: right;
+  padding: 2em 0;
+}
+
+label.error {
+  color: red;
+  width: 100%;
+  padding-top: 20px;
+}

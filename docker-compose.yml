@@ -1,0 +1,41 @@
+version: '3.1'
+
+services:
+  db:
+    container_name: my-mysql
+    image: my-mysql
+    build:
+      context: ./setup
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - 3306:3306
+    networks:
+      - studentska-sluzba-network
+  studentska-sluzba-server:
+    container_name: studentska-sluzba-server
+    image: studentska-sluzba-server
+    build:
+      context: ./studentska-sluzba/server
+    ports:
+      - 3000:3000
+    networks:
+      - studentska-sluzba-network
+  studentska-sluzba-client:
+    container_name: studentska-sluzba-client
+    image: studentska-sluzba-client
+    build:
+      context: ./studentska-sluzba/client
+    ports:
+      - 5050:80
+  studentski-servis:
+    container_name: studentski-servis
+    image: studentski-servis
+    build:
+      context: ./studentski-servis
+    ports:
+      - 4040:80
+
+networks:
+  studentska-sluzba-network:
+    driver: bridge

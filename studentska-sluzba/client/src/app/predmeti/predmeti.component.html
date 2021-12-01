@@ -1,0 +1,58 @@
+<div class="main">
+  <ngx-datatable
+    [rows]="rows"
+    [headerHeight]="50"
+    [rowHeight]="50"
+    class="material expandable"
+    [groupRowsBy]="'godina'"
+    [groupExpansionDefault]="true"
+    [columnMode]="'force'"
+  >
+    <ngx-datatable-group-header [rowHeight]="50">
+      <ng-template
+        let-group="group"
+        let-expanded="expanded"
+        ngx-datatable-group-header-template
+      >
+        <div style="padding: 5px">
+          <b>{{ group.value[0].godina }} ГОДИНА</b>
+        </div>
+      </ng-template>
+    </ngx-datatable-group-header>
+
+    <ngx-datatable-column name="Smjer" [width]="10" [sortable]="false">
+      <ng-template ngx-datatable-header-template>
+        <span>СМЈЕР</span>
+      </ng-template>
+      <ng-template let-value="value" ngx-datatable-cell-template>
+        {{ value }}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="SifraPredmeta" [width]="10" [sortable]="false">
+      <ng-template ngx-datatable-header-template>
+        <span>ШИФРА</span>
+      </ng-template>
+      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+        {{ value }}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="naziv" [width]="500" [sortable]="false">
+      <ng-template ngx-datatable-header-template>
+        <span>ПРЕДМЕТ</span>
+      </ng-template>
+      <ng-template let-value="value" ngx-datatable-cell-template>
+        {{ value }}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="SifraPredmeta" [width]="50" [sortable]="false">
+      <ng-template ngx-datatable-header-template>
+        <span>ИСПИТИ</span>
+      </ng-template>
+      <ng-template let-value="value" ngx-datatable-cell-template>
+        <a [routerLink]="['/ispiti']" [queryParams]="{ sifraPredmeta: value }"
+          >испити</a
+        >
+      </ng-template>
+    </ngx-datatable-column>
+  </ngx-datatable>
+</div>

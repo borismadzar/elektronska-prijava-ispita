@@ -1,0 +1,25 @@
+<div class="main">
+  <div class="main-content">
+    <div class="formgrid">
+      <input id="ime" name="ime" type="text" [(ngModel)]="ime" />
+      <label for="ime">ИМЕ</label>
+
+      <input id="prezime" name="prezime" type="text" [(ngModel)]="prezime" />
+      <label for="prezime">ПРЕЗИМЕ</label>
+
+      <input
+        id="indexbroj"
+        name="indexbroj"
+        type="text"
+        [(ngModel)]="brojIndeksa"
+      />
+      <label for="indexbroj">ИНДЕКС БРОЈ</label>
+
+      <label class="error" *ngIf="prikaziNesupjesnaProvjera"
+        >НЕУСПЈЕШНА ПРОВЈЕРА ПОДАТАКА</label
+      >
+
+      <button (click)="provjeriPodatke()">ПРИЈАВА</button>
+    </div>
+  </div>
+</div>
