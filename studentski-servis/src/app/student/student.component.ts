@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { StudentService } from "./student.service";
+import { StudentskiServis } from "../studentski-servis.service";
 
 @Component({
   selector: "app-student",
@@ -14,7 +14,10 @@ export class StudentComponent implements OnInit {
 
   prikaziNesupjesnaProvjera: boolean;
 
-  constructor(private studentService: StudentService, private router: Router) {}
+  constructor(
+    private studentskiServis: StudentskiServis,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {}
 
@@ -23,7 +26,7 @@ export class StudentComponent implements OnInit {
   }
 
   public provjeriPodatke() {
-    this.studentService
+    this.studentskiServis
       .provjeriPodatke(this.ime, this.prezime, this.brojIndeksa)
       .subscribe((r) => {
         if (r) this.router.navigateByUrl("/prijava");

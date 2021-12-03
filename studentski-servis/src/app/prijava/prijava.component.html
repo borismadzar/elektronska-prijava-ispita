@@ -34,8 +34,11 @@
   >
     <div class="potvrda">
       <section class="student">
-        <h1>Марко Марковић</h1>
-        <h2>231/18</h2>
+        <h1>
+          {{ studentskiServis.student.ime }}
+          {{ studentskiServis.student.prezime }}
+        </h1>
+        <h2>{{ studentskiServis.student.brojIndeksa }}</h2>
       </section>
 
       <section class="naslov">

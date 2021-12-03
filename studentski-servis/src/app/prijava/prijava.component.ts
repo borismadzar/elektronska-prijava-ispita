@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
+import { StudentskiServis } from "../studentski-servis.service";
 import { Godina } from "./godina";
 import { IspitniRok } from "./ispitni-rok";
 import { Predmet } from "./predmet";
-import { PrijavaService } from "./prijava.service";
 import { Termin } from "./termin";
 
 @Component({
@@ -20,8 +20,8 @@ export class PrijavaComponent implements OnInit {
 
   rokovi: IspitniRok[] = [];
 
-  constructor(private prijavaService: PrijavaService) {
-    prijavaService
+  constructor(public studentskiServis: StudentskiServis) {
+    studentskiServis
       .predmtiKojeStudentNijePolozio()
       .subscribe((godine) => (this.godine = godine));
   }
@@ -31,13 +31,13 @@ export class PrijavaComponent implements OnInit {
   predmet_click(p: Predmet): void {
     this.odabranPredmet = p;
 
-    this.prijavaService
+    this.studentskiServis
       .rokoviZaOdabraniPredmet(p.id)
       .subscribe((rokovi) => (this.rokovi = rokovi));
   }
 
   prijaviIspit_click(): void {
-    this.prijavaService
+    this.studentskiServis
       .kreirajPrijavu(this.odabranTermin.id)
       .subscribe((ok) => {
         console.log(ok);
