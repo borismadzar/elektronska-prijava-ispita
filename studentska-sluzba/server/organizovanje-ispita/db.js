@@ -101,7 +101,7 @@ exports.ispiti = function (sifraPredmeta, callback) {
       `select t.id
             , p.id          as sifraPredmeta
             , t.ispitni_rok as rok
-            , t.vrijeme
+            , DATE_FORMAT(t.vrijeme, "%d.%m.%Y. %H:%i") as vrijeme
             , t.mjesto
         from termin t
                 join predmet p on t.predmet_id = p.id
@@ -143,7 +143,7 @@ exports.ispit = function (ispitId, callback) {
       `select t.id
               , p.id          as sifraPredmeta
               , t.ispitni_rok as rok
-              , t.vrijeme
+              , DATE_FORMAT(t.vrijeme, "%d.%m.%Y. %H:%i") as vrijeme
               , t.mjesto
           from termin t
                   join predmet p on t.predmet_id = p.id
