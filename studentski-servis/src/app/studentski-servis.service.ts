@@ -22,7 +22,8 @@ export class StudentskiServis {
   provjeriPodatke(
     ime: string,
     prezime: string,
-    brojIndeksa: string
+    brojIndeksa: string,
+    token: string
   ): Observable<boolean> {
     this.student = { ime, prezime, brojIndeksa };
     return this.http.post<boolean>(
@@ -31,6 +32,7 @@ export class StudentskiServis {
         ime: ime,
         prezime: prezime,
         brojIndeksa: brojIndeksa,
+        gRrecaptcha: token,
       },
       {
         withCredentials: true,

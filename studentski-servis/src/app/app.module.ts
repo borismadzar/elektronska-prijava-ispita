@@ -8,12 +8,7 @@ import { AppComponent } from "./app.component";
 import { StudentComponent } from "./student/student.component";
 import { PrijavaComponent } from "./prijava/prijava.component";
 
-import {
-  RecaptchaModule,
-  RecaptchaFormsModule,
-  RECAPTCHA_SETTINGS,
-  RecaptchaSettings,
-} from "ng-recaptcha";
+import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from "ng-recaptcha";
 
 @NgModule({
   declarations: [AppComponent, StudentComponent, PrijavaComponent],
@@ -23,15 +18,12 @@ import {
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    RecaptchaModule,
-    RecaptchaFormsModule,
+    RecaptchaV3Module,
   ],
   providers: [
     {
-      provide: RECAPTCHA_SETTINGS,
-      useValue: {
-        siteKey: "6Lfo44QcAAAAAN5FSbSz5o3hiICopFumDo7zp3BV",
-      } as RecaptchaSettings,
+      provide: RECAPTCHA_V3_SITE_KEY,
+      useValue: "6LdJEHccAAAAAOLFndHOVKrqalLVO0rd5L1lIvhx",
     },
   ],
   bootstrap: [AppComponent],

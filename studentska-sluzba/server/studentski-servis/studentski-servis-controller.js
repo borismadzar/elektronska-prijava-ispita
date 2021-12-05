@@ -1,21 +1,44 @@
 const db = require("./db");
+const request = require("request");
 
 exports.autetntifikuj = (req, res) => {
   res.setHeader("Content-Type", "application/json");
-  db.provjeriOsnovnePodatke(
-    req.body.ime,
-    req.body.prezime,
-    req.body.brojIndeksa,
-    function (err, user) {
-      if (user) {
-        req.session.regenerate(function () {
-          req.session.user = user;
 
-          res.send(true);
-        });
-      } else {
+  if (!req.body.gRrecaptcha) {
+    return res.send(false);
+  }
+
+  request.post(
+    {
+      url: "https://www.google.com/recaptcha/api/siteverify",
+      form: {
+        secret: "6LdJEHccAAAAAN9OeNhUDpmkG6brDen9TENXrtuO",
+        response: req.body.gRrecaptcha,
+      },
+    },
+    function (error, response, body) {
+      body = JSON.parse(body);
+
+      if (body.success !== undefined && !body.success) {
         res.send(false);
       }
+
+      db.provjeriOsnovnePodatke(
+        req.body.ime,
+        req.body.prezime,
+        req.body.brojIndeksa,
+        function (err, user) {
+          if (user) {
+            req.session.regenerate(function () {
+              req.session.user = user;
+
+              res.send(true);
+            });
+          } else {
+            res.send(false);
+          }
+        }
+      );
     }
   );
 };
